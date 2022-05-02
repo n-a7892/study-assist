@@ -1,0 +1,2 @@
+class SaveDatum < ApplicationRecord
+end
