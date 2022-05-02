@@ -1,27 +1,52 @@
-# README
+# Study Assist
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+自身の学習時間を教科別で管理し、自分の学習の偏りや、得手不得手を理解することができる。
+自分が取り組んだ問題とその正誤を記録し、間違えた問題をおすすめとし表示させることで、復習を充実させることができる。
+学習状況を共有することで、自分と同じ学年、レベル、目標をもった学生の学習状況を把握することができ、自分の学習への参考とすることができる。
+学校生活だけでは得ることのできない、実際の学生の状況を知ることができる。
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+学習への意欲やモチベーションをあげることができるSNSサイト
 
-* Configuration
+自身の学習時間の管理。
+学習成果の保存。
+様々な学生との学習時間の共有。
 
-* Database creation
+### テーマを選んだ理由
 
-* Database initialization
+気兼ねなく外出するのが難しくなり、自宅での学習時間が増えてきています。
+しかし、自宅で一人で学習するのは、とても大変で、モチベーションや集中力が上がりづらいということが多くあると思います。
+私自身、学生時代の学習の管理がうまくできていなかったり、他の人の学習状況を気にしたりすることが多くありました。
+インターネットを使うのが当たり前になっているこの時代に、他者と交流することはとても容易であると思います。
+その利点を活用するほかないと思いました。
+今コロナ禍での子どもたちは、昔に比べ、満足できる学校生活を送れているとは言い切れない状況にあると思います。
+せめて、学校外での学習をより充実させて、今しかない時間を有意義に送ってほしいと考えています。
+このサイトを通して、一人でも多くの意欲ある学生が自分の学習を確立させ、勉学に勤しんでほしい、また、社会へ出て活躍してほしいと思いこのテーマを選びました。
 
-* How to run the test suite
+### ターゲットユーザ
 
-* Services (job queues, cache servers, search engines, etc.)
+自分の学習を記録したい中高生
+他人の学習状況をを手軽に知りたいと思っている中高生
+中高生の学習状況を知りたい学校関係者
 
-* Deployment instructions
+### 主な利用シーン
 
-* ...
-# study-assist
-# study-assist
-# study-assist
+自分の学習への意欲・モチベーションを上げたい時。
+他人と学習状況を比較したい時。
+自分の学習を管理し、復習に力を入れたい時。
+
+## 設計書
+<...>
+
+## チャレンジ要素一覧
+<https://docs.google.com/spreadsheets/d/1P27F3k2ukLtoPNM3BCHR0EMZZ_qj2YET7gbZ-LSYviI/edit?usp=sharing>
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
