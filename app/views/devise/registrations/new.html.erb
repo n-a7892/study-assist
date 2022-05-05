@@ -1,0 +1,38 @@
+<h2>新規登録</h2>
+
+<%= form_with model: @user, url: user_registration_path do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :name, "ニックネーム"%><br>
+    <%= f.text_field :name %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :age, "年代" %><br>
+    <%= f.select :age, [ ["10歳未満",0],["10代",1],["20代",2],["30代",3],["40代",4],["50代",5],["60歳以上",6] ], prompt: "選択して下さい" %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :password, "パスワード" %>
+    <% if @minimum_password_length %>
+    <span>(<%= @minimum_password_length %> 文字以上)</span>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div><br>
+
+  <div class="actions">
+    <%= f.submit "登録", class: "btn btn-secondary" %>
+  </div>
+<% end %>
+
