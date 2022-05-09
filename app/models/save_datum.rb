@@ -1,2 +1,0 @@
-class SaveDatum < ApplicationRecord
-end

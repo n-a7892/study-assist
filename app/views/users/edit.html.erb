@@ -1,2 +1,32 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>ユーザ情報編集</h1><br>
+<%= form_with model: @user, url: user_path(@user.id), method: :patch do |user| %>
+  <table style="text-align:left; margin:0 auto;">
+    <tr style="height:80px;">
+      <td><%= user.label :name, "ニックネーム" %></td>
+      <td><%= user.text_field :name, size: "50" %></td>
+    </tr>
+    <tr style="height:80px;">
+      <td><%= user.label :age, "年代" %></td>
+      <td><%= user.select :age, [ ["10歳未満",0],["10代",1],["20代",2],["30代",3],["40代",4],["50代",5],["60歳以上",6] ] %></td>
+    </tr>
+    <tr style="height:80px;">
+      <td><%= user.label :email, "メールアドレス　" %></td>
+      <td><%= user.email_field :email, size: "50" %></td>
+    </tr>
+    <tr style="height:80px;">
+      <td><%= user.label :learning_content, "学習内容" %></td>
+      <td><%= user.text_area :learning_content, size: "50x5" %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        「,」で区切って自分の学習内容を自由に登録しよう！<br>
+        例1：英語,英語検定,英検,TOEIC<br>
+        例2：資格勉強,プログラミング,HTML,CSS,Ruby,Rails,RubyOnRails
+      </td>
+    </tr>
+  </table><br>
+  <div style="text-align:center;">
+    <%= user.submit "変更を保存する", class: "btn btn-secondary" %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+ja:
+  enums:
+    save_data:
+      place:
+        home: "自宅"
+        library: "図書館"
+        cafe: "カフェ"
+        other: "（その他）"

@@ -1,2 +1,45 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.name %>さんの学習記録</h1>
+<h4>登録日</h4>
+<span><%= @user.created_at.strftime("%Y年%m月%d日～") %></span>
+<table class="table">
+    <caption style="caption-side:top;">直近の学習</caption>
+    <tr class="table-active">
+        <th>日付</th>
+        <th>時刻</th>
+        <th>場所</th>
+        <th>内容</th>
+        <th>時間</th>
+    </tr>
+    <tr>
+        <td><%= @save_data.day.strftime("%Y年%m月%d日") %></td>
+        <td><%= @save_data.start_time.strftime("%H:%M") %>～<%= @save_data.finish_time.strftime("%H:%M") %></td>
+        <td>
+            <%= @save_data.place_i18n %>
+            <% if @save_data.place == SaveData.places.key(3) %>
+            <%= @save_data.other_place %>
+            <% end %>
+        </td>
+        <td><%= @save_data.content %></td>
+        <td><%= @save_data.time.round(1) %>h</td>
+    </tr>
+</table>
+<table class="table">
+    <caption style="caption-side:top;">最近の投稿</caption>
+    <tr class="table-active">
+        <th>日付</th>
+        <th>時刻</th>
+        <th>場所</th>
+        <th>内容</th>
+        <th>時間</th>
+    </tr>
+    <% @posts.each do |posts| %>
+    <tr>
+        <td><%= posts.day.strftime("%m月%d日")%></td>
+        <td><%= posts.start_time.strftime("%H:%M")%>～<%= @post.finish_time.strftime("%H:%M")%></td>
+        <td><%= posts.place_i18n %></td>
+        <td><%= posts.content %></td>
+        <td><%= posts.time%></td>
+    </tr>
+    <% end %>
+</table>
+<%= link_to "全ての投稿を見る>>", posts_path, class: "float-right" %>

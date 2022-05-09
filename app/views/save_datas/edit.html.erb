@@ -1,2 +1,32 @@
-<h1>SaveDatas#edit</h1>
-<p>Find me in app/views/save_datas/edit.html.erb</p>
+<h1>学習記録の編集</h1>
+<%= form_with model: @save_data, url: save_data_path(@save_data.id), method: :patch do |save_data| %>
+<table class="table">
+  <tr class="new_table_row">
+      <td><%= save_data.label :day, "学習日" %></td>
+      <td><%= save_data.date_field :day %></td>
+    </tr>
+    <tr class="new_table_row">
+      <td><%= save_data.label :start_time, "学習" %><%= save_data.label :finish_time, "時間" %></td>
+      <td><%= save_data.time_select :start_time, size: 10 %>～<%= save_data.time_select :finish_time, size: 10 %></td>
+    </tr>
+    <tr class="new_table_row">
+      <td><%= save_data.label :place, "学習場所　" %></td>
+      <td>
+        <%= save_data.radio_button :place, SaveData.places.key(0) %><%= SaveData.places_i18n[:home] %>
+        <%= save_data.radio_button :place, SaveData.places.key(1) %><%= SaveData.places_i18n[:library] %>
+        <%= save_data.radio_button :place, SaveData.places.key(2) %><%= SaveData.places_i18n[:cafe] %>
+        <%= save_data.radio_button :place, SaveData.places.key(3) %><%= SaveData.places_i18n[:other] %>
+        <%= save_data.text_field :other_place %>
+      </td>
+    </tr>
+    <tr class="new_table_row">
+      <td><%= save_data.label :content, "学習内容" %></td>
+      <td><%= save_data.text_field :content %></td>
+    </tr>
+    <tr class="new_table_row">
+      <td></td>
+      <td></td>
+    </tr>
+</table>
+<%= save_data.submit "変更を保存する", class: "btn btn-secondary" %>
+<% end %>

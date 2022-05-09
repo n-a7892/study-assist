@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SaveDatumTest < ActiveSupport::TestCase
+class SaveDataTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
