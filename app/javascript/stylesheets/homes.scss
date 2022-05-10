@@ -1,5 +1,11 @@
-.top-visual {
-        background-image: image-url('bg-image_top.jpg');
-        width: 100%;
-        height: 600px;
-      }
+.top-visual{
+    background-image: url("../images/bg-image_top.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+    display: flex;
+	align-items: center;
+}
+.top-title{
+    margin: 0 auto;
+}

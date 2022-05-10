@@ -13,6 +13,13 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application.scss"
 import '@fortawesome/fontawesome-free/js/all'
+import "../stylesheets/homes.scss"
+import "../stylesheets/comments.scss"
+import "../stylesheets/favorites.scss"
+import "../stylesheets/posts.scss"
+import "../stylesheets/save_datas.scss"
+import "../stylesheets/searches.scss"
+import "../stylesheets/users.scss"
 
 Rails.start()
 Turbolinks.start()

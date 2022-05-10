@@ -80,19 +80,27 @@
     <div class="container-fluid">
       <div class="row" style="margin:0 auto;">
         <div class="col-2" style="background-color:blue;">
-
+          <% if user_signed_in? %>
+          
+          <% else %>
+          
+          <% end %>
         </div>
         <div class="col-8" style="text-align:center; margin:20px auto;">
           <%= yield %>
         </div>
         <div class="col-2" style="background-color:red;">
-
+          <% if user_signed_in? %>
+          
+          <% else %>
+          
+          <% end %>
         </div>
       </div>
     </div>
 
-    <footer style="height:120px; background-color:#848282; text-align:center;">
-      <p>フッター</p>
+    <footer class="footer-style">
+      <span>フッター</span>
     </footer>
   </body>
 </html>

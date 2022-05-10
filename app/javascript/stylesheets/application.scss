@@ -1,8 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-// top-visual{
-//     background-image: image-url('bg-image_top.jpg');
-//     width: 100%;
-//     height: 600px;
-// }
+.footer-style{
+  height: 120px;
+  background-color: #848282;
+  text-align: center;
+  display: flex;
+	align-items: center;
+	justify-content: center;
+}
