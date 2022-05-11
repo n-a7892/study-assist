@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    @posts = current_user.posts.page(params[:page]).per(5)
   end
 
   def show

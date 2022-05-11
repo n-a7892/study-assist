@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
   resources :save_datas
+  get 'save_datas/:id/show_image' => 'save_datas#show_image', as: 'image'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

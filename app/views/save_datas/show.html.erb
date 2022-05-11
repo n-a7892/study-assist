@@ -1,1 +1,39 @@
-<h1>学習履歴詳細</h1>
+<div class="container">
+  <h1>学習履歴詳細</h1>
+  <table class="table">
+    <tr>
+      <td class="table table-active w-25">学習日</td>
+      <td><%= @save_data.day.strftime("%Y年%m月%d日") %></td>
+    </tr>
+    <tr>
+      <td class="table table-active w-25">時刻</td>
+      <td><%= @save_data.start_time.strftime("%H:%M") %>～<%= @save_data.finish_time.strftime("%H:%M") %></td>
+    </tr>
+    <tr>
+      <td class="table table-active w-25">場所</td>
+      <td>
+        <%= @save_data.place_i18n %>
+        <% if @save_data.place == SaveData.places.key(3) %>
+        <%= @save_data.other_place %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="table table-active w-25">時間</td>
+      <td><%= @save_data.time.round(1) %>h</td>
+    </tr>
+    <tr>
+      <td class="table table-active w-25">内容</td>
+      <td>
+        <%= @save_data.content %>
+          <% if @save_data.image.attached? %>
+            <%= link_to image_path(@save_data.id) do %>
+              <%= image_tag @save_data.image, size: "200x200" %>
+            <% end %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+          <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

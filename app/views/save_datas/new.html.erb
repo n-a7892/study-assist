@@ -1,6 +1,10 @@
 <h1>学習を保存しよう</h1><br>
 <%= form_with model: @save_data, url: save_datas_path, method: :post do |save_data| %>
   <table class="table new_table">
+    <tr>
+      <td>画像</td>
+      <td><%= save_data.file_field :image, accept: "image/*" %></td>
+    </tr>
     <tr class="new_table_row">
       <td><%= save_data.label :day, "学習日" %></td>
       <td><%= save_data.date_field :day %></td>

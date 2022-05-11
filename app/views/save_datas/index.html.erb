@@ -1,29 +1,43 @@
 <h1>過去の学習</h1>
 <table class="table index_table">
   <tr class="table-active">
+    <th></th>
     <th>日付</th>
     <th>時刻</th>
     <th>場所</th>
     <th>内容</th>
     <th>時間</th>
     <th></th>
+    <th></th>
   </tr>
   <% @save_datas.each do |save_data|%>
-  <tr>
-    <td><%= save_data.day.strftime("%Y年%m月%d日") %></td>
-    <td><%= save_data.start_time.strftime("%H:%M") %>～<%= save_data.finish_time.strftime("%H:%M") %></td>
-    <td>
-      <%= save_data.place_i18n %>
-      <% if save_data.place == SaveData.places.key(3) %>
-      <%= save_data.other_place %>
-      <% end %>
-    </td>
-    <td><%= save_data.content %></td>
-    <td><%= save_data.time.round(1) %>h</td>
-    <td>
-      <%= link_to "削除", save_data_path(save_data.id), method: :delete, class: "btn btn-primary" %>
-      <%= link_to "編集", edit_save_data_path(save_data.id), class: "btn btn-primary" %>
-    </td>
-  </tr>
+      <tr>
+        <td>
+          <%= link_to save_data_path(save_data.id) do %>
+            <i class="fas fa-info-circle"></i>
+          <% end %>
+        </td>
+        <td><%= save_data.day.strftime("%Y年%m月%d日") %></td>
+        <td><%= save_data.start_time.strftime("%H:%M") %>～<%= save_data.finish_time.strftime("%H:%M") %></td>
+        <td>
+          <%= save_data.place_i18n %>
+          <% if save_data.place == SaveData.places.key(3) %>
+          <%= save_data.other_place %>
+          <% end %>
+        </td>
+        <td><%= save_data.content %></td>
+        <td><%= save_data.time.round(1) %>h</td>
+        <td>
+          <%= link_to edit_save_data_path(save_data.id) do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to save_data_path(save_data.id), method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </td>
+      </tr>
   <% end %>
 </table>
+<div class="row justify-content-center"><%= paginate @save_datas %></div>

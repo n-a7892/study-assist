@@ -6,3 +6,16 @@ ja:
         library: "図書館"
         cafe: "カフェ"
         other: "（その他）"
+    post:
+      place:
+        home: "自宅"
+        library: "図書館"
+        cafe: "カフェ"
+        other: "（その他）"
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."

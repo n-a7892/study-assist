@@ -15,10 +15,15 @@ class SaveDatasController < ApplicationController
   end
 
   def index
-    @save_datas = current_user.save_datas.all
+    @save_datas = current_user.save_datas.page(params[:page]).per(5)
   end
 
   def show
+    @save_data = current_user.save_datas.find(params[:id])
+  end
+
+  def show_image
+    @save_data = current_user.save_datas.find(params[:id])
   end
 
   def edit
@@ -39,6 +44,6 @@ class SaveDatasController < ApplicationController
 
   private
   def save_data_params
-    params.require(:save_data).permit(:day, :start_time, :finish_time, :place, :other_place, :content)
+    params.require(:save_data).permit(:image, :day, :start_time, :finish_time, :place, :other_place, :content)
   end
 end

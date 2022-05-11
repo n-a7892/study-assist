@@ -23,6 +23,7 @@
         <td><%= @save_data.time.round(1) %>h</td>
     </tr>
 </table>
+<%= link_to "全ての学習を見る>>", save_datas_path, class: "float-right" %>
 <table class="table">
     <caption style="caption-side:top;">最近の投稿</caption>
     <tr class="table-active">
@@ -35,10 +36,10 @@
     <% @posts.each do |posts| %>
     <tr>
         <td><%= posts.day.strftime("%m月%d日")%></td>
-        <td><%= posts.start_time.strftime("%H:%M")%>～<%= @post.finish_time.strftime("%H:%M")%></td>
+        <td><%= posts.start_time.strftime("%H:%M")%>～<%= posts.finish_time.strftime("%H:%M")%></td>
         <td><%= posts.place_i18n %></td>
         <td><%= posts.content %></td>
-        <td><%= posts.time%></td>
+        <td><%= posts.time %>h</td>
     </tr>
     <% end %>
 </table>
