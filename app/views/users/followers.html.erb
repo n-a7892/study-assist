@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table">
+    <caption class="caption-top h1"><strong>フォロー中</strong></caption>
+    <tr>
+      <th>ユーザ名</th>
+      <th>年代</th>
+      <th>学習内容</th>
+      <th>投稿数</th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user_path(user) do %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td><%= user.age_i18n %></td>
+        <td><%= user.learning_content %></td>
+        <td>
+          <%= link_to user_index_post_path(user) do%>
+            <%= user.save_datas.where(release: true).count %>件
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="row justify-content-center"><%= paginate @users %></div>

@@ -1,0 +1,62 @@
+<h1>投稿一覧画面</h1>
+<table class="table index_table">
+  <tr class="table-active">
+    <th></th>
+    <th>日付</th>
+    <th>時刻</th>
+    <th>場所</th>
+    <th>内容</th>
+    <th>時間</th>
+    <% if current_user == @user %>
+      <th></th>
+      <th></th>
+    <% else %>
+      <th></th>
+    <% end %>
+  </tr>
+  <% @save_datas.each do |save_datas|%>
+      <tr>
+        <td>
+          <%= link_to user_save_data_path(@user, save_datas) do %>
+            <i class="fas fa-info-circle"></i>
+          <% end %>
+        </td>
+        <td><%= save_datas.day.strftime("%Y年%m月%d日") %></td>
+        <td><%= save_datas.start_time.strftime("%H:%M") %>～<%= save_datas.finish_time.strftime("%H:%M") %></td>
+        <td>
+          <%= save_datas.place_i18n %>
+          <% if save_datas.place == SaveData.places.key(3) %>
+          <%= save_datas.other_place %>
+          <% end %>
+        </td>
+        <td><%= save_datas.content %></td>
+        <td><%= save_datas.time.round(1) %>h</td>
+        <% if current_user == @user %>
+          <td>
+            <%= link_to edit_user_save_data_path(@user, save_datas) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user_save_data_path(@user, save_datas), method: :delete do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </td>
+        <% else %>
+          <td>
+            <% if current_user.already_favorites?(save_datas) %>
+              <%= link_to user_save_data_favorites_path(@user, save_datas), method: :delete do %>
+                <i class="fas fa-thumbs-up"></i>
+              <% end %>
+            <% else %>
+              <%= link_to user_save_data_favorites_path(@user, save_datas), method: :post do %>
+                <i class="far fa-thumbs-up"></i>
+              <% end %>
+            <% end %>
+            <%= save_datas.favorites.count %>
+          </td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+<div class="row justify-content-center"><%= paginate @save_datas %></div>

@@ -7,7 +7,7 @@
     </tr>
     <tr style="height:80px;">
       <td><%= user.label :age, "年代" %></td>
-      <td><%= user.select :age, [ ["10歳未満",0],["10代",1],["20代",2],["30代",3],["40代",4],["50代",5],["60歳以上",6] ] %></td>
+      <td><%= user.select :age, [ ["10歳未満","under"],["10代","tens"],["20代","twentys"],["30代","thirtys"],["40代","fortys"],["50代","fiftys"],["60歳以上","over"] ] %></td>
     </tr>
     <tr style="height:80px;">
       <td><%= user.label :email, "メールアドレス　" %></td>

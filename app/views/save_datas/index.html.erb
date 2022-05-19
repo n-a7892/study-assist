@@ -1,4 +1,4 @@
-<h1>過去の学習</h1>
+<h1>学習履歴</h1>
 <table class="table index_table">
   <tr class="table-active">
     <th></th>
@@ -7,13 +7,15 @@
     <th>場所</th>
     <th>内容</th>
     <th>時間</th>
-    <th></th>
-    <th></th>
+    <% if current_user.id == @user.id %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
   <% @save_datas.each do |save_data|%>
       <tr>
         <td>
-          <%= link_to save_data_path(save_data.id) do %>
+          <%= link_to user_save_data_path(@user, save_data) do %>
             <i class="fas fa-info-circle"></i>
           <% end %>
         </td>
@@ -27,16 +29,18 @@
         </td>
         <td><%= save_data.content %></td>
         <td><%= save_data.time.round(1) %>h</td>
-        <td>
-          <%= link_to edit_save_data_path(save_data.id) do %>
-            <i class="fas fa-edit"></i>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to save_data_path(save_data.id), method: :delete do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        </td>
+        <% if current_user == @user %>
+          <td>
+            <%= link_to edit_user_save_data_path(@user, save_data) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user_save_data_path(@user, save_data), method: :delete do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
   <% end %>
 </table>

@@ -6,12 +6,15 @@ ja:
         library: "図書館"
         cafe: "カフェ"
         other: "（その他）"
-    post:
-      place:
-        home: "自宅"
-        library: "図書館"
-        cafe: "カフェ"
-        other: "（その他）"
+    user:
+      age:
+        under: "10歳未満"
+        tens: "10代"
+        twentys: "20代"
+        thirtys: "30代"
+        fortys: "40代"
+        fiftys: "50代"
+        over: "60歳以上"
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

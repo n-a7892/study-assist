@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_11_105023) do
+ActiveRecord::Schema.define(version: 2022_05_17_143343) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 2022_05_11_105023) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "save_data_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
@@ -70,9 +70,10 @@ ActiveRecord::Schema.define(version: 2022_05_11_105023) do
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.time "start_time", null: false
-    t.time "finish_time", null: false
-    t.float "time", null: false
+    t.integer "start_time_hour"
+    t.integer "start_time_minute"
+    t.integer "finish_time_hour"
+    t.integer "finish_time_minute"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 2022_05_11_105023) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "time"
+    t.boolean "release", default: false, null: false
   end
 
   create_table "tags", force: :cascade do |t|

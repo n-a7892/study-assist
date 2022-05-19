@@ -1,25 +1,30 @@
 class SaveDatasController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @save_data = SaveData.new
+    @user = User.find(params[:user_id])
   end
 
   def create
     @save_data = current_user.save_datas.new(save_data_params)
     @save_data.time = (@save_data.finish_time - @save_data.start_time) / 3600
     @save_data.save
-    if params[:save_data][:post_new]
-      render template: "posts/create"
-    else
-      redirect_to user_path(current_user.id)
-    end
+    redirect_to user_path(current_user.id)
   end
 
   def index
-    @save_datas = current_user.save_datas.page(params[:page]).per(5)
+    @user = User.find(params[:user_id])
+    @save_datas = SaveData.where(user_id: @user.id).page(params[:page]).per(5)
+  end
+
+  def index_post
+    @user = User.find(params[:user_id])
+    @save_datas = SaveData.where(release: true).where(user_id: @user.id).page(params[:page]).per(5)
   end
 
   def show
-    @save_data = current_user.save_datas.find(params[:id])
+    @save_data = SaveData.find(params[:id])
   end
 
   def show_image
@@ -28,6 +33,7 @@ class SaveDatasController < ApplicationController
 
   def edit
     @save_data = current_user.save_datas.find(params[:id])
+    @user = User.find(params[:user_id])
   end
 
   def update
@@ -44,6 +50,6 @@ class SaveDatasController < ApplicationController
 
   private
   def save_data_params
-    params.require(:save_data).permit(:image, :day, :start_time, :finish_time, :place, :other_place, :content)
+    params.require(:save_data).permit(:image, :day, :start_time, :finish_time, :place, :other_place, :content, :release)
   end
 end

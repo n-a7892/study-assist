@@ -1,0 +1,50 @@
+<div class="row text-left shadow p-3 mb-5 bg-body rounded">
+  <div class="col-6">
+    <h2>投稿の検索</h2>
+      <%= form_with url: post_result_path, local: true, method: :get  do |form| %>
+        <%= form.select :range, options_for_select([["内容","content"], ["場所","place"], ["場所(その他)","other_place"]]), include_blank: "---選択する---" %>
+        <%= form.text_field :keyword, placeholder: "投稿を検索する" %>
+        <%= form.submit "検索", class: "search-btn" %>
+      <% end %>
+  </div>
+  <div class="col-6">
+    <h2>ユーザの検索</h2>
+      <%= form_with url: user_result_path, local: true, method: :get  do |form| %>
+        <%= form.select :range, options_for_select([["ニックネーム","name"], ["学習内容","content"], ["年代","age"]]), include_blank: "---選択する---" %>
+        <%= form.text_field :keyword, placeholder: "ユーザを検索する" %>
+        <%= form.submit "検索", class: "search-btn" %>
+      <% end %>
+  </div>
+</div>
+<h3>検索結果</h3>
+<table class="table">
+  <tr class="table-active">
+    <th>ニックネーム</th>
+    <th>年代</th>
+    <th>学習内容</th>
+    <th>投稿数</th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr class="border">
+      <td>
+        <%= link_to user_path(user.id) do %>
+          <%= user.name %>
+        <% end %>
+      </td>
+      <td><%= user.age_i18n %></td>
+      <td><%= user.learning_content %></td>
+      <td><%= user.save_datas.where(release: true).count %>件</td>
+      <td>
+        <% if user == current_user %>
+          <span class="small">あなた</span>
+        <% elsif user.is_followed_by?(current_user) %>
+          <%= link_to "フォロー解除", user_relationships_path(user), method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-primary" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div class="row justify-content-center"><%= paginate @users %></div>

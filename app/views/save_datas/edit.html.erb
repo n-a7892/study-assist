@@ -1,6 +1,6 @@
 <h1>学習記録の編集</h1>
-<%= form_with model: @save_data, url: save_data_path(@save_data.id), method: :patch do |save_data| %>
-<table class="table">
+<%= form_with model: @save_data, url: user_save_data_path(@user, @save_data), method: :patch do |save_data| %>
+<table class="table new_table">
   <tr class="new_table_row">
       <td><%= save_data.label :day, "学習日" %></td>
       <td><%= save_data.date_field :day %></td>
@@ -24,8 +24,11 @@
       <td><%= save_data.text_field :content %></td>
     </tr>
     <tr class="new_table_row">
-      <td></td>
-      <td></td>
+      <td><%= save_data.label :release , "公開設定" %></td>
+      <td>
+        <%= save_data.radio_button :release, true %>公開する
+        <%= save_data.radio_button :release, false %>公開しない
+      </td>
     </tr>
 </table>
 <%= save_data.submit "変更を保存する", class: "btn btn-secondary" %>

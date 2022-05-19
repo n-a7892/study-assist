@@ -1,2 +1,20 @@
-<h1>Searches#finder</h1>
-<p>Find me in app/views/searches/finder.html.erb</p>
+<div class="container">
+  <div class="row text-left shadow p-3 mb-5 bg-body rounded">
+  <div class="col-6">
+    <h2>投稿の検索</h2>
+      <%= form_with url: post_result_path, local: true, method: :get  do |form| %>
+        <%= form.select :range, options_for_select([["内容","content"], ["場所","place"], ["場所(その他)","other_place"]]), include_blank: "---選択する---" %>
+        <%= form.text_field :keyword, placeholder: "投稿を検索する" %>
+        <%= form.submit "検索", class: "search-btn" %>
+      <% end %>
+  </div>
+  <div class="col-6">
+    <h2>ユーザの検索</h2>
+      <%= form_with url: user_result_path, local: true, method: :get  do |form| %>
+        <%= form.select :range, options_for_select([["ニックネーム","name"], ["学習内容","content"], ["年代","age"]]), include_blank: "---選択する---" %>
+        <%= form.text_field :keyword, placeholder: "ユーザを検索する" %>
+        <%= form.submit "検索", class: "search-btn" %>
+      <% end %>
+  </div>
+</div>
+</div>

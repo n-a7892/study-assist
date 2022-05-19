@@ -29,20 +29,13 @@
             </li>
 
             <li class="nav-item" style="margin:10px;">
-              <%= link_to new_post_path, class: 'btn btn-outline-dark nav-link text-dark' do %>
-                <i class="fas fa-file-alt"></i></i>投稿
-              <% end %>
-            </li>
-
-
-            <li class="nav-item" style="margin:10px;">
-              <%= link_to new_save_data_path, class: 'btn btn-outline-dark nav-link text-dark' do %>
+              <%= link_to new_user_save_data_path(current_user), class: 'btn btn-outline-dark nav-link text-dark' do %>
                 <i class="fas fa-book-medical"></i>学習保存
               <% end %>
             </li>
 
             <li class="nav-item" style="margin:10px;">
-              <%= link_to searches_finder_path, class: 'btn btn-outline-dark nav-link text-dark' do %>
+              <%= link_to finder_path, class: 'btn btn-outline-dark nav-link text-dark' do %>
                 <i class="fas fa-search"></i>検索
               <% end %>
             </li>

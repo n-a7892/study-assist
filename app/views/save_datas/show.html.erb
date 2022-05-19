@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>学習履歴詳細</h1>
+  <h1>学習詳細</h1>
   <table class="table">
     <tr>
       <td class="table table-active w-25">学習日</td>
@@ -26,13 +26,15 @@
       <td class="table table-active w-25">内容</td>
       <td>
         <%= @save_data.content %>
+        <% if current_user.id == @save_data.user.id %>
           <% if @save_data.image.attached? %>
-            <%= link_to image_path(@save_data.id) do %>
+            <%= link_to user_show_image_path(@save_data.user, @save_data) do %>
               <%= image_tag @save_data.image, size: "200x200" %>
             <% end %>
           <% else %>
             <%= image_tag 'no_image', size: "200x200" %>
           <% end %>
+        <% end %>
       </td>
     </tr>
   </table>
