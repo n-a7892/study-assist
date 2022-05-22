@@ -36,7 +36,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to user_save_data_path(@user, save_data), method: :delete do %>
+            <%= link_to user_save_data_path(@user, save_data), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
           </td>

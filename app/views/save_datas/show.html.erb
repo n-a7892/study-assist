@@ -38,4 +38,22 @@
       </td>
     </tr>
   </table>
+  <%= form_with model: @comment, url: user_save_data_comments_path(current_user, @save_data), method: :post do |comment| %>
+    <div class="comment-form">
+      <%= comment.text_area :comment, size: "20x3" %>
+      <%= comment.submit "コメント送信", class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+      <th>コメント投稿者</th>
+      <th>コメント内容</th>
+    </tr>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.comment %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>

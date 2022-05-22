@@ -3,6 +3,7 @@ class SaveData < ApplicationRecord
 
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :day, presence: true
   validates :start_time, presence: true

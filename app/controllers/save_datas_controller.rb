@@ -25,6 +25,8 @@ class SaveDatasController < ApplicationController
 
   def show
     @save_data = SaveData.find(params[:id])
+    @comment = current_user.comments.new #コメント投稿用のモデル
+    @comments = @save_data.comments.all #コメント表示用のモデル
   end
 
   def show_image
@@ -39,13 +41,13 @@ class SaveDatasController < ApplicationController
   def update
     @save_data = current_user.save_datas.find(params[:id])
     @save_data.update(save_data_params)
-    redirect_to save_datas_path
+    redirect_to user_save_datas_path(current_user)
   end
 
   def destroy
     @save_data = current_user.save_datas.find(params[:id])
     @save_data.destroy
-    redirect_to save_datas_path
+    redirect_to user_save_datas_path(current_user)
   end
 
   private

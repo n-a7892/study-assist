@@ -79,19 +79,47 @@
 
     <div class="container-fluid">
       <div class="row" style="margin:0 auto;">
-        <div class="col-2" style="background-color:blue;">
+        <div class="col-2 shadow-lg p-3 mb-5 bg-body rounded sideber">
           <% if user_signed_in? %>
-
+            <span class="h4">My Infomation</span>
+            <div class="border border-primary rounded sideber-frame">
+              <div class="bg-secondary text-white table-row">Name</div>
+              <div><%= current_user.name %></div>
+              <div class="bg-secondary text-white table-row">Age</div>
+              <div><%= current_user.age_i18n %></div>
+              <div class="bg-secondary text-white table-row">Learning</div>
+              <div class="over"><%= current_user.learning_content %></div>
+            </div>
           <% else %>
 
           <% end %>
         </div>
+
         <div class="col-8" style="text-align:center; margin:20px auto;">
           <%= yield %>
         </div>
-        <div class="col-2" style="background-color:red;">
-          <% if user_signed_in? %>
 
+        <div class="col-2 shadow-lg p-3 mb-5 bg-body rounded sideber">
+          <% if user_signed_in? %>
+            <span class="h4">Time Ranking</span>
+            <div class="border border-danger rounded sideber-frame">
+              <% current_user.save_datas.group("date(day)").order(sum_time: :DESC).sum(:time).keys.first(5).each.with_index(1) do |day, i| %>
+                <div class="ranking">
+                  <%= i %>位
+                  <%= day %>
+                </div>
+              <% end %>
+              <!--<div class="bg-secondary text-white table-row">1位</div>-->
+              <!--<div>-->
+              <!--  <%# current_user.save_datas.group("date(day)").order(sum_time: :DESC).sum(:time).each do |group_day| %>-->
+              <!--    <%#= group_day[2022-05-12] %>-->
+              <!--  <%# end %>-->
+              <!--</div>-->
+              <!--<div class="bg-secondary text-white table-row">2位</div>-->
+              <!--<div><%#= current_user.save_datas.group("date(day)").order(sum_time: :DESC).sum(:time).keys %></div>-->
+              <!--<div class="bg-secondary text-white table-row">3位</div>-->
+              <!--<div></div>-->
+            </div>
           <% else %>
 
           <% end %>
