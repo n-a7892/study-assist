@@ -91,7 +91,9 @@
               <div class="over"><%= current_user.learning_content %></div>
             </div>
           <% else %>
-
+            <div class="sideber">
+              <p class="vertical h3">新規登録<br>ログインをして</p>
+            </div>
           <% end %>
         </div>
 
@@ -109,19 +111,11 @@
                   <%= day %>
                 </div>
               <% end %>
-              <!--<div class="bg-secondary text-white table-row">1位</div>-->
-              <!--<div>-->
-              <!--  <%# current_user.save_datas.group("date(day)").order(sum_time: :DESC).sum(:time).each do |group_day| %>-->
-              <!--    <%#= group_day[2022-05-12] %>-->
-              <!--  <%# end %>-->
-              <!--</div>-->
-              <!--<div class="bg-secondary text-white table-row">2位</div>-->
-              <!--<div><%#= current_user.save_datas.group("date(day)").order(sum_time: :DESC).sum(:time).keys %></div>-->
-              <!--<div class="bg-secondary text-white table-row">3位</div>-->
-              <!--<div></div>-->
             </div>
           <% else %>
-
+            <div>
+              <p class="vertical h3">共有を始めよう！</p>
+            </div>
           <% end %>
         </div>
       </div>

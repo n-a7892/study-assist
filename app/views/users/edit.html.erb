@@ -1,3 +1,6 @@
+<div class="text-danger">
+  <%= flash[:alert] %>
+</div>
 <h1>ユーザ情報編集</h1><br>
 <%= form_with model: @user, url: user_path(@user.id), method: :patch do |user| %>
   <table style="text-align:left; margin:0 auto;">

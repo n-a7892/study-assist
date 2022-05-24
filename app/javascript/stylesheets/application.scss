@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
 
 .footer-style{
   height: 120px;
@@ -11,7 +12,7 @@
 }
 
 .caption-top{
-  caption-side:top;
+  caption-side: top;
 }
 
 .sideber{
@@ -40,3 +41,11 @@
 .comment-form{
   text-align: right;
 }
+
+.vertical {
+	-ms-writing-mode: tb-rl;
+	writing-mode: vertical-rl;
+	margin: 0 auto;
+	font-family: 'Yuji Syuku', serif;
+}
+

@@ -1,55 +1,62 @@
+<div class="text-success">
+  <%= flash[:notice] %>
+</div>
 <h1><%= @user.name %>さん</h1>
 <p><%= link_to @user.followings.count, followings_user_path(@user)%> フォロー　<%= link_to @user.followers.count, followers_user_path(@user)%>フォロワー</p>
 <div class="float-left">登録日　<%= @user.created_at.strftime("%Y年%m月%d日～") %></div><br>
   <% if current_user == @user %>
   <%= link_to "ユーザ情報を編集する", edit_user_path(@user.id), class: "btn btn-secondary float-right" %>
-    <table class="table">
-        <caption style="caption-side:top;">直近の学習</caption>
-        <tr class="table-active">
-            <th>日付</th>
-            <th>時刻</th>
-            <th>場所</th>
-            <th>内容</th>
-            <th>時間</th>
-        </tr>
-        <tr>
-            <td><%= @save_data.day.strftime("%Y年%m月%d日") %></td>
-            <td><%= @save_data.start_time.strftime("%H:%M") %>～<%= @save_data.finish_time.strftime("%H:%M") %></td>
-            <td>
-                <%= @save_data.place_i18n %>
-                <% if @save_data.place == SaveData.places.key(3) %>
-                <%= @save_data.other_place %>
-                <% end %>
-            </td>
-            <td><%= @save_data.content %></td>
-            <td><%= @save_data.time.round(1) %>h</td>
-        </tr>
-    </table>
-    <%= link_to "全ての学習を見る>>", user_save_datas_path(@user), class: "float-right" %>
-    <table class="table">
-        <caption style="caption-side:top;">最近の投稿</caption>
-        <tr class="table-active">
-            <th>日付</th>
-            <th>時刻</th>
-            <th>場所</th>
-            <th>内容</th>
-            <th>時間</th>
-        </tr>
-        <% @save_datas.each do |save_datas| %>
-        <tr>
-            <td><%= save_datas.day.strftime("%m月%d日")%></td>
-            <td><%= save_datas.start_time.strftime("%H:%M")%>～<%= save_datas.finish_time.strftime("%H:%M")%></td>
-            <td><%= save_datas.place_i18n %>
-                <% if save_datas.place == SaveData.places.key(3) %>
-                <%= save_datas.other_place %>
-                <% end %>
-            </td>
-            <td><%= save_datas.content %></td>
-            <td><%= save_datas.time %>h</td>
-        </tr>
-        <% end %>
-    </table>
-    <%= link_to "全ての投稿を見る>>", user_index_post_path(@user), class: "float-right" %>
+      <% if @save_data.present? %>
+        <table class="table">
+            <caption class="caption-top">直近の学習</caption>
+            <tr class="table-active">
+                <th>日付</th>
+                <th>時刻</th>
+                <th>場所</th>
+                <th>内容</th>
+                <th>時間</th>
+            </tr>
+            <tr>
+                <td><%= @save_data.day.strftime("%Y年%m月%d日") %></td>
+                <td><%= @save_data.start_time.strftime("%H:%M") %>～<%= @save_data.finish_time.strftime("%H:%M") %></td>
+                <td>
+                    <%= @save_data.place_i18n %>
+                    <% if @save_data.place == SaveData.places.key(3) %>
+                    <%= @save_data.other_place %>
+                    <% end %>
+                </td>
+                <td><%= @save_data.content %></td>
+                <td><%= @save_data.time.round(1) %>h</td>
+            </tr>
+        </table>
+        <%= link_to "全ての学習を見る>>", user_save_datas_path(@user), class: "float-right" %>
+        <table class="table">
+            <caption style="caption-side:top;">最近の投稿</caption>
+            <tr class="table-active">
+                <th>日付</th>
+                <th>時刻</th>
+                <th>場所</th>
+                <th>内容</th>
+                <th>時間</th>
+            </tr>
+            <% @save_datas.each do |save_datas| %>
+            <tr>
+                <td><%= save_datas.day.strftime("%m月%d日")%></td>
+                <td><%= save_datas.start_time.strftime("%H:%M")%>～<%= save_datas.finish_time.strftime("%H:%M")%></td>
+                <td><%= save_datas.place_i18n %>
+                    <% if save_datas.place == SaveData.places.key(3) %>
+                    <%= save_datas.other_place %>
+                    <% end %>
+                </td>
+                <td><%= save_datas.content %></td>
+                <td><%= save_datas.time %>h</td>
+            </tr>
+            <% end %>
+        </table>
+        <%= link_to "全ての投稿を見る>>", user_index_post_path(@user), class: "float-right" %>
+      <% else %>
+        <br><div>学習履歴がありません。学習を保存しましょう！</div>
+      <% end %>
   <% else %>
       <% if @user.is_followed_by?(current_user) %>
           <%= link_to "フォロー解除", user_relationships_path(@user), method: :delete, class: "btn btn-danger" %>

@@ -1,3 +1,6 @@
+<div class="text-danger">
+  <%= flash[:alert] %>
+</div>
 <h1>学習記録の編集</h1>
 <%= form_with model: @save_data, url: user_save_data_path(@user, @save_data), method: :patch do |save_data| %>
 <table class="table new_table">

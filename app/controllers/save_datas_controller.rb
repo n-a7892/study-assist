@@ -9,13 +9,24 @@ class SaveDatasController < ApplicationController
   def create
     @save_data = current_user.save_datas.new(save_data_params)
     @save_data.time = (@save_data.finish_time - @save_data.start_time) / 3600
-    @save_data.save
-    redirect_to user_path(current_user.id)
+    if @save_data.save
+      if params[:release]
+        flash[:notice] = "保存・投稿しました。"
+      else
+        flash[:notice] = "保存しました"
+      end
+      redirect_to user_path(current_user.id)
+    else
+      flash[:alert] = "保存できませんでした。"
+      @save_data = current_user.save_datas.new(save_data_params)
+      @user = User.find(params[:user_id])
+      render :new
+    end
   end
 
   def index
     @user = User.find(params[:user_id])
-    @save_datas = SaveData.where(user_id: @user.id).page(params[:page]).per(5)
+    @save_datas = SaveData.where(user_id: @user.id).order(day: :desc).page(params[:page]).per(5)
   end
 
   def index_post
@@ -40,8 +51,15 @@ class SaveDatasController < ApplicationController
 
   def update
     @save_data = current_user.save_datas.find(params[:id])
-    @save_data.update(save_data_params)
-    redirect_to user_save_datas_path(current_user)
+    if @save_data.update(save_data_params)
+      flash[:notice] = "更新しました。"
+      redirect_to user_save_datas_path(current_user)
+    else
+      flash[:alert] = "更新できませんでした。"
+      @save_data = current_user.save_datas.find(params[:id])
+      @user = User.find(params[:user_id])
+      render :edit
+    end
   end
 
   def destroy
