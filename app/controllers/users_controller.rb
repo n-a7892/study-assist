@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id)
     else
       flash[:alert] = "更新できませんでした。"
+      @user = User.find(params[:id])
       render :edit
     end
   end

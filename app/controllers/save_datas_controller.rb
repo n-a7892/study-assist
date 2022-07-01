@@ -36,8 +36,10 @@ class SaveDatasController < ApplicationController
 
   def show
     @save_data = SaveData.find(params[:id])
-    @comment = current_user.comments.new #コメント投稿用のモデル
-    @comments = @save_data.comments.all #コメント表示用のモデル
+    @comment = current_user.comments.new #コメント投稿用インスタンス
+    @comments = @save_data.comments.order(created_at: :desc).page(params[:page]).per(5) #コメント表示用インスタンス
+    @all_comments = @save_data.comments.all #コメント件数用インスタンス
+    @favorites = @save_data.favorites.all
   end
 
   def show_image
@@ -65,6 +67,7 @@ class SaveDatasController < ApplicationController
   def destroy
     @save_data = current_user.save_datas.find(params[:id])
     @save_data.destroy
+    flash[:notice] = "削除されました。"
     redirect_to user_save_datas_path(current_user)
   end
 

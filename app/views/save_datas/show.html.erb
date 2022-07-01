@@ -38,14 +38,28 @@
       </td>
     </tr>
   </table>
+  <%= link_to "<<一覧へ戻る", user_save_datas_path(@save_data.user, @save_data), class: "float-left" %>
+  <div class="float-right h3">
+    <% if current_user.already_favorites?(@save_data) %>
+      <%= link_to user_save_data_favorites_path(@save_data.user, @save_data), method: :delete do %>
+        <i class="fas fa-thumbs-up"></i>
+      <% end %>
+    <% else %>
+      <%= link_to user_save_data_favorites_path(@save_data.user, @save_data), method: :post do %>
+        <i class="far fa-thumbs-up"></i>
+      <% end %>
+    <% end %>
+    <%= @save_data.favorites.count %>
+  </div><br>
   <%= form_with model: @comment, url: user_save_data_comments_path(current_user, @save_data), method: :post do |comment| %>
     <div class="comment-form">
-      <%= comment.text_area :comment, size: "20x3" %>
+      <%= comment.text_area :comment, size: "20x3" %><br>
       <%= comment.submit "コメント送信", class: "btn btn-secondary" %>
     </div>
   <% end %>
-  <table>
-    <tr>
+  <table class="table">
+    <caption class="caption-top">コメント<%= @all_comments.count %>件　いいね<%= @favorites.count %>件</caption>
+    <tr class="table-active">
       <th>コメント投稿者</th>
       <th>コメント内容</th>
     </tr>
@@ -57,3 +71,4 @@
     <% end %>
   </table>
 </div>
+<div class="row justify-content-center"><%= paginate @comments %></div>

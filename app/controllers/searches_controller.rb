@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
   def post_result
     @range = params[:range]
     word = params[:keyword]
-    @save_datas = SaveData.where(release: true).looks(@range, word).page(params[:page]).per(10)
+    @save_datas = SaveData.where(release: true).order(created_at: :desc).looks(@range, word).page(params[:page]).per(10)
   end
 
 end
